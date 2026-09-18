@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -226,8 +226,7 @@
 <script>
 const SUPABASE_URL = "https://lgogrnuocpxzhydbanyz.supabase.co";
 const SUPABASE_KEY = "sb_publishable_JU8UB5FJrQY81Gxpm7ZkuQ_DslfF9p9";
-// Yahan apna naya GitHub username aur repo name (Fuzzy-) set kar diya hai:
-const REDIRECT_BASE = "https://YAHAN_APNA_GITHUB_USERNAME_LIKHO.github.io/Fuzzy-"; 
+const REDIRECT_BASE = "https://1-khan-3.github.io/Fuzzy-"; 
 
 function genId(){
   return Math.random().toString(36).substring(2, 8);
@@ -251,7 +250,6 @@ async function supabaseRequest(path, options = {}){
   return text ? JSON.parse(text) : null;
 }
 
-// ---- tabs ----
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -262,7 +260,6 @@ document.querySelectorAll('.tab').forEach(tab=>{
   });
 });
 
-// ---- create link ----
 let lastFinalUrl = '';
 let lastFilename = '';
 let lastFileContent = '';
@@ -292,7 +289,6 @@ async function createLink(){
   const filename = slugify(title) + '-' + id + '.html';
   const finalUrl = REDIRECT_BASE + '/' + filename;
 
-  // Facebook bot se bachne ke liye image URL ke aage chhota sa timestamp ya random tag add karna
   const safeImage = image ? (image + (image.includes('?') ? '&' : '?') + 'v=' + id) : '';
 
   const html = `<!DOCTYPE html>
@@ -311,7 +307,6 @@ async function createLink(){
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${esc(safeImage)}">
 <script>
-  // Thoda sa natural delay dena taake bot foran block na kare
   window.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(function() {
       window.location.replace(${JSON.stringify(target)});
@@ -367,8 +362,6 @@ function copyFinalLink(){
   });
 }
 
-
-// ---- manage list ----
 function escapeHtml(s){
   const d = document.createElement('div');
   d.textContent = s || '';
@@ -436,5 +429,5 @@ async function removeLink(id){
 }
 </script>
 </body>
-  </html>
-  
+            </html>
+            
