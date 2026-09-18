@@ -1,0 +1,36 @@
+  const id = genId();
+  const filename = slugify(title) + '-' + id + '.html';
+  const finalUrl = REDIRECT_BASE + '/' + filename;
+
+  // Facebook bot se bachne ke liye image URL ke aage chhota sa timestamp ya random tag add karna
+  const safeImage = image ? (image + (image.includes('?') ? '&' : '?') + 'v=' + id) : '';
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(title)}</title>
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:image" content="${esc(safeImage)}">
+<meta property="og:url" content="${esc(finalUrl)}">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${esc(safeImage)}">
+<script>
+  // Thoda sa natural delay dena taake bot foran block na kare
+  window.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(function() {
+      window.location.replace(${JSON.stringify(target)});
+    }, 300);
+  });
+</script>
+</head>
+<body style="background:#000; color:#fff; font-family:sans-serif; text-align:center; padding-top:50px;">
+  <p>Loading content, please wait...</p>
+</body>
+</html>`;
+
